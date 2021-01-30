@@ -1,0 +1,111 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using WorkRewards.DTO;
+using WorkRewards.Manager.Interface;
+
+namespace WorkRewardsAPI.Controllers
+{
+    [Route("v1")]
+    [ApiController]
+    public class UserController : ControllerBase
+    {
+        ILogger logger;
+        private IUserManager _budget;
+
+        public UserController(IUserManager budget, ILoggerFactory deploggerFactory)
+        {
+            this.logger = deploggerFactory.CreateLogger("Controllers.BudgetAccountsController");
+            _budget = budget;
+        }
+
+        /// <summary>
+        /// Get GetRoles
+        /// </summary>
+        /// <param name="requestObj"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetRoles/{roleId:int}")]
+        [Route("GetRoles")]
+        public async Task<ActionResult> GetRoles(int? roleId)
+        {
+            try
+            {
+                var result = await _budget.GetRoles(roleId);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                this.logger.LogError(ex.InnerException.ToString());
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// RegisterUser
+        /// </summary>
+        /// <param name="requestObj"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("RegisterUser")]
+        public async Task<ActionResult> RegisterUser([FromBody]UserDetailsDTO requestObj)
+        {
+            try
+            {
+                var result = await _budget.RegisterUser(requestObj);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                this.logger.LogError(ex.InnerException.ToString());
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// ValidateUser
+        /// </summary>
+        /// <param name="requestObj"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("ValidateUser")]
+        public async Task<ActionResult> ValidateUser([FromBody]UserDetailsDTO requestObj)
+        {
+            try
+            {
+                var result = await _budget.ValidateUser(requestObj);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                this.logger.LogError(ex.InnerException.ToString());
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// ValidateUser
+        /// </summary>
+        /// <param name="requestObj"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("ChangePassword")]
+        public async Task<ActionResult> ChangePassword(int userId,string oldPwd,string newPwd)
+        {
+            try
+            {
+                var result = await _budget.ChangePassword(userId,oldPwd,newPwd);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                this.logger.LogError(ex.InnerException.ToString());
+            }
+            return null;
+        }
+    }
+}
