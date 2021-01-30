@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -9,6 +10,7 @@ using WorkRewards.Manager.Interface;
 
 namespace WorkRewardsAPI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class DropdownController : ControllerBase
@@ -19,7 +21,7 @@ namespace WorkRewardsAPI.Controllers
 
         public DropdownController(IDropdownManager dropdownManager, ILoggerFactory deploggerFactory)
         {
-            this.logger = deploggerFactory.CreateLogger("Controllers.BudgetAccountsController");
+            this.logger = deploggerFactory.CreateLogger("Controllers.DropdownController");
             _dropdownManager = dropdownManager;
         }
 

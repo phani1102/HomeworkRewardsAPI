@@ -6,9 +6,11 @@ namespace WorkRewards.DTO
 {
     public class RewardsDTO
     {
-        public int RewardId { get; set; }
+        public long RewardId { get; set; }
         public string RewardName { get; set; }
         public string Description { get; set; }
+        public long? TaskId { get; set; }
+        public string RewardStatus { get; set; }
      
     }
 

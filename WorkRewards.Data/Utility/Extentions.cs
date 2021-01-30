@@ -6,7 +6,7 @@ using System.Text;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace GRM_Budget.Data.Utility
+namespace WorkRewards.Data.Utility
 {
     public static class Extentions
     {

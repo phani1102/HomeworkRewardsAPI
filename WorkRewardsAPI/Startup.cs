@@ -35,6 +35,10 @@ namespace WorkRewardsAPI
             services.AddCors();
             services.AddTransient<IUserManager, UserManager>();
             services.AddTransient<IUserData, UserData>();
+            services.AddTransient<IDropdownManager, DropdownManager>();
+            services.AddTransient<IDropdownData, DropdownData>();
+            services.AddTransient<IRewardData, RewardData>();
+            services.AddTransient<IRewardManager, RewardManager>();
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo

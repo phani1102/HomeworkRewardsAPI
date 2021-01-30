@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
 using System.Text;
 
-namespace GRM_Budget.Data.Utility
+namespace WorkRewards.Data.Utility
 {
     public class SummitDBUtils
     {

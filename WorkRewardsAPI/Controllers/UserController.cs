@@ -15,12 +15,12 @@ namespace WorkRewardsAPI.Controllers
     public class UserController : ControllerBase
     {
         ILogger logger;
-        private IUserManager _budget;
+        private IUserManager _user;
 
-        public UserController(IUserManager budget, ILoggerFactory deploggerFactory)
+        public UserController(IUserManager user, ILoggerFactory deploggerFactory)
         {
             this.logger = deploggerFactory.CreateLogger("Controllers.BudgetAccountsController");
-            _budget = budget;
+            _user = user;
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace WorkRewardsAPI.Controllers
         {
             try
             {
-                var result = await _budget.GetRoles(roleId);
+                var result = await _user.GetRoles(roleId);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -56,7 +56,7 @@ namespace WorkRewardsAPI.Controllers
         {
             try
             {
-                var result = await _budget.RegisterUser(requestObj);
+                var result = await _user.RegisterUser(requestObj);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -77,7 +77,7 @@ namespace WorkRewardsAPI.Controllers
         {
             try
             {
-                var result = await _budget.ValidateUser(requestObj);
+                var result = await _user.ValidateUser(requestObj);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -98,7 +98,7 @@ namespace WorkRewardsAPI.Controllers
         {
             try
             {
-                var result = await _budget.ChangePassword(userId,oldPwd,newPwd);
+                var result = await _user.ChangePassword(userId,oldPwd,newPwd);
                 return Ok(result);
             }
             catch (Exception ex)

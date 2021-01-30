@@ -1,4 +1,4 @@
-﻿using GRM_Budget.Data.Utility;
+﻿using WorkRewards.Data.Utility;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
@@ -8,14 +8,14 @@ using System.Data.SqlClient;
 using System.Text;
 using WorkRewards.DTO;
 using System.Linq;
-using GRM_Budget.Data;
+using WorkRewards.Data;
 using WorkRewards.Data.Interface;
 
 namespace WorkRewards.Data
 {
     public class DropdownData : BaseData, IDropdownData
     {
-        private readonly string CbmsConnectionString;
+        private readonly string ConnectionString;
         SummitDBUtils dbUtil;//= new SummitDBUtils();
         ILogger<UserData> logger;
         IConfiguration config;
@@ -24,8 +24,8 @@ namespace WorkRewards.Data
         {
             this.logger = logger;
             config = _config;
-            this.CbmsConnectionString = config.GetSection("AppSettings").GetSection("ConnectionString").Value;
-            //dbUtil.ConnectionString = this.CbmsConnectionString;
+            this.ConnectionString = config.GetSection("AppSettings").GetSection("ConnectionString").Value;
+            //dbUtil.ConnectionString = this.ConnectionString;
             dbUtil = new SummitDBUtils(_config, logger);
         }
 
@@ -37,7 +37,7 @@ namespace WorkRewards.Data
 
             try
             {
-                dbUtil.ConnectionString = this.CbmsConnectionString;
+                dbUtil.ConnectionString = this.ConnectionString;
                 spParams = new SqlParameter[] {
                     new SqlParameter("@User_Id ",userId),
 
@@ -52,9 +52,9 @@ namespace WorkRewards.Data
                                     select new UserDetailsDTO()
                                     {
                                         UserId = objdata.Field<int>("User_Id"),
-                                        Fitst_Name = objdata.Field<string>("First_Name"),
+                                        First_Name = objdata.Field<string>("First_Name"),
                                         Last_Name = objdata.Field<string>("Last_Name"),
-                                        Middele_Name = objdata.Field<string>("Middle_Name"),
+                                        Middle_Name = objdata.Field<string>("Middle_Name"),
                                         UserName = objdata.Field<string>("Username"),
                                         Email = objdata.Field<string>("Email"),
                                         MobileNumber = objdata.Field<string>("Mobile_No"),
@@ -80,7 +80,7 @@ namespace WorkRewards.Data
 
             try
             {
-                dbUtil.ConnectionString = this.CbmsConnectionString;
+                dbUtil.ConnectionString = this.ConnectionString;
                 spParams = new SqlParameter[] {
                     new SqlParameter("@RoleId ",roleId),
 
@@ -114,7 +114,7 @@ namespace WorkRewards.Data
 
             try
             {
-                dbUtil.ConnectionString = this.CbmsConnectionString;
+                dbUtil.ConnectionString = this.ConnectionString;
                 spParams = new SqlParameter[] {
                     new SqlParameter("@Reward_Id ",rewardId),
 

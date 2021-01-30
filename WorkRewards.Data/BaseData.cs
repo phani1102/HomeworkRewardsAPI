@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GRM_Budget.Data
+namespace WorkRewards.Data
 {
     public class BaseData
     {

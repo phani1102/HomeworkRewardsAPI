@@ -1,4 +1,4 @@
-﻿using GRM_Budget.Data.Utility;
+﻿using WorkRewards.Data.Utility;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
@@ -9,13 +9,13 @@ using System.Text;
 using System.Linq;
 using WorkRewards.DTO;
 using WorkRewards.Data.Interface;
-using GRM_Budget.Data;
+using WorkRewards.Data;
 
 namespace WorkRewards.Data
 {
     public class UserData: BaseData, IUserData
     {
-        private readonly string CbmsConnectionString;
+        private readonly string ConnectionString;
         SummitDBUtils dbUtil;//= new SummitDBUtils();
         ILogger<UserData> logger;
         IConfiguration config;
@@ -24,8 +24,8 @@ namespace WorkRewards.Data
         {
             this.logger = logger;
             config = _config;
-            this.CbmsConnectionString = config.GetSection("AppSettings").GetSection("ConnectionString").Value;
-            //dbUtil.ConnectionString = this.CbmsConnectionString;
+            this.ConnectionString = config.GetSection("AppSettings").GetSection("ConnectionString").Value;
+            //dbUtil.ConnectionString = this.ConnectionString;
             dbUtil = new SummitDBUtils(_config, logger);
         }
         public int RegisterUser(UserDetailsDTO user)
@@ -35,11 +35,11 @@ namespace WorkRewards.Data
 
             try
             {
-                dbUtil.ConnectionString = this.CbmsConnectionString;
+                dbUtil.ConnectionString = this.ConnectionString;
                 spParams = new SqlParameter[] {
-                    new SqlParameter("@First_Name", user.Fitst_Name),
+                    new SqlParameter("@First_Name", user.First_Name),
                     new SqlParameter("@Last_Name ", user.Last_Name),
-                    new SqlParameter("@Middle_Name ", user.Middele_Name),
+                    new SqlParameter("@Middle_Name ", user.Middle_Name),
                     new SqlParameter("@Username", user.UserName),
                     new SqlParameter("@Password", user.Password),
                     new SqlParameter("@Email", user.Email),
@@ -74,7 +74,7 @@ namespace WorkRewards.Data
 
             try
             {
-                dbUtil.ConnectionString = this.CbmsConnectionString;
+                dbUtil.ConnectionString = this.ConnectionString;
                 spParams = new SqlParameter[] {
                     new SqlParameter("@RoleId ",roleId),
 
@@ -109,7 +109,7 @@ namespace WorkRewards.Data
 
             try
             {
-                dbUtil.ConnectionString = this.CbmsConnectionString;
+                dbUtil.ConnectionString = this.ConnectionString;
                 spParams = new SqlParameter[] {
                     new SqlParameter("@Username ",user.UserName),
                     new SqlParameter("@Password ",user.Password),
@@ -123,9 +123,9 @@ namespace WorkRewards.Data
                                     select new UserDetailsDTO()
                                     {
                                         UserId = objdata.Field<int>("Role_Id"),
-                                        Fitst_Name = objdata.Field<string>("First_Name"),
+                                        First_Name = objdata.Field<string>("First_Name"),
                                         Last_Name = objdata.Field<string>("Last_Name"),
-                                        Middele_Name = objdata.Field<string>("Middle_Name"),
+                                        Middle_Name = objdata.Field<string>("Middle_Name"),
                                         Email = objdata.Field<string>("Email"),
                                         MobileNumber = objdata.Field<string>("Mobile_No"),
                                         RoleId = objdata.Field<int>("Role_Id"),
@@ -151,7 +151,7 @@ namespace WorkRewards.Data
 
             try
             {
-                dbUtil.ConnectionString = this.CbmsConnectionString;
+                dbUtil.ConnectionString = this.ConnectionString;
                 spParams = new SqlParameter[] {
                     new SqlParameter("@UserId ", userId),
                     new SqlParameter("@OldPassword  ", oldPassword),
