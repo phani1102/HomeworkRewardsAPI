@@ -30,7 +30,7 @@ namespace WorkRewardsAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-         //   services.AddTokenAuthentication(Configuration);
+            //   services.AddTokenAuthentication(Configuration);
 
             services.AddCors();
             services.AddTransient<IUserManager, UserManager>();
@@ -39,6 +39,8 @@ namespace WorkRewardsAPI
             services.AddTransient<IDropdownData, DropdownData>();
             services.AddTransient<IRewardData, RewardData>();
             services.AddTransient<IRewardManager, RewardManager>();
+            services.AddTransient<ITaskData, TaskData>();
+            services.AddTransient<ITaskManager, TaskManager>();
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
@@ -60,8 +62,8 @@ namespace WorkRewardsAPI
 
             app.UseHttpsRedirection();
             app.UseRouting();
-           // app.UseAuthentication();
-           // app.UseAuthorization();
+            // app.UseAuthentication();
+            // app.UseAuthorization();
             app.UseSwagger();
             app.UseSwaggerUI(options => options.SwaggerEndpoint("/swagger/v1/swagger.json", "Work Rewards Services"));
             app.UseEndpoints(endpoints =>

@@ -63,6 +63,13 @@ namespace WorkRewards.Data
             else
                 return Convert.ToDouble(strIn);
         }
+        public DateTime? MakeSafeDate(object strIn)
+        {
+            if ((strIn == DBNull.Value))
+                return null;
+            else
+                return Convert.ToDateTime(strIn);
+        }
         public int? MakeSafeNullableInt(object strIn)
         {
             if ((strIn == DBNull.Value))
