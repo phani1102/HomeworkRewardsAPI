@@ -3,7 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkRewardsAPI", "WorkRewardsAPI\WorkRewardsAPI.csproj", "{4C4B606F-9BEF-4792-8331-A5BEC072230D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkRewardsAPI", "WorkRewardsAPI\WorkRewardsAPI.csproj", "{4C4B606F-9BEF-4792-8331-A5BEC072230D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkRewards.DTO", "WorkRewards.DTO\WorkRewards.DTO.csproj", "{87170825-2D41-4EA2-AC7A-3E2D997B074C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkRewards.Manager", "WorkRewards.Manager\WorkRewards.Manager.csproj", "{AF97DEAE-3EF7-4225-9108-D3A48439626D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkRewards.Manager.Interface", "WorkRewards.Manager.Interface\WorkRewards.Manager.Interface.csproj", "{48EBDF41-804C-4C97-8CE6-231F1D6850F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkRewards.Data", "WorkRewards.Data\WorkRewards.Data.csproj", "{C4B757CA-902D-45BA-B61C-5F43516F4B6C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkRewards.Data.Interface", "WorkRewards.Data.Interface\WorkRewards.Data.Interface.csproj", "{53755E65-C41E-4B66-AC36-F28058332CBD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +25,26 @@ Global
 		{4C4B606F-9BEF-4792-8331-A5BEC072230D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C4B606F-9BEF-4792-8331-A5BEC072230D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C4B606F-9BEF-4792-8331-A5BEC072230D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87170825-2D41-4EA2-AC7A-3E2D997B074C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87170825-2D41-4EA2-AC7A-3E2D997B074C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87170825-2D41-4EA2-AC7A-3E2D997B074C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87170825-2D41-4EA2-AC7A-3E2D997B074C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF97DEAE-3EF7-4225-9108-D3A48439626D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF97DEAE-3EF7-4225-9108-D3A48439626D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF97DEAE-3EF7-4225-9108-D3A48439626D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF97DEAE-3EF7-4225-9108-D3A48439626D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48EBDF41-804C-4C97-8CE6-231F1D6850F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48EBDF41-804C-4C97-8CE6-231F1D6850F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48EBDF41-804C-4C97-8CE6-231F1D6850F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48EBDF41-804C-4C97-8CE6-231F1D6850F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4B757CA-902D-45BA-B61C-5F43516F4B6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4B757CA-902D-45BA-B61C-5F43516F4B6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4B757CA-902D-45BA-B61C-5F43516F4B6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4B757CA-902D-45BA-B61C-5F43516F4B6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53755E65-C41E-4B66-AC36-F28058332CBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53755E65-C41E-4B66-AC36-F28058332CBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53755E65-C41E-4B66-AC36-F28058332CBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53755E65-C41E-4B66-AC36-F28058332CBD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

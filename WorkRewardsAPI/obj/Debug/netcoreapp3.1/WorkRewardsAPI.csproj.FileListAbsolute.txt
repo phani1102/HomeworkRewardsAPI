@@ -60,3 +60,4 @@ D:\Projects\WorkRewardsAPI\WorkRewardsAPI\bin\Debug\netcoreapp3.1\Swashbuckle.As
 D:\Projects\WorkRewardsAPI\WorkRewardsAPI\obj\Debug\netcoreapp3.1\WorkRewardsAPI.csproj.CoreCompileInputs.cache
 D:\Projects\WorkRewardsAPI\WorkRewardsAPI\obj\Debug\netcoreapp3.1\WorkRewardsAPI.MvcApplicationPartsAssemblyInfo.cs
 D:\Projects\WorkRewardsAPI\WorkRewardsAPI\obj\Debug\netcoreapp3.1\WorkRewardsAPI.MvcApplicationPartsAssemblyInfo.cache
+D:\Projects\WorkRewardsAPI\WorkRewardsAPI\obj\Debug\netcoreapp3.1\WorkRewardsAPI.csprojAssemblyReference.cache
