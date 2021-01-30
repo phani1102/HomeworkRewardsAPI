@@ -11,7 +11,7 @@ using WorkRewards.Manager.Interface;
 namespace WorkRewardsAPI.Controllers
 {
     [Authorize]
-    [Route("api/[controller]")]
+    [Route("v1")]
     [ApiController]
     public class DropdownController : ControllerBase
     {
