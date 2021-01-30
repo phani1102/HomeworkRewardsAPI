@@ -11,6 +11,6 @@ namespace WorkRewards.Manager.Interface
         Task<bool> ChangePassword(int userId, string oldPassword, string newPassword);
         Task<UserDetailsDTO> ValidateUser(UserDetailsDTO user);
         Task<List<RoleDTO>> GetRoles(int? roleId);
-        Task<int> RegisterUser(UserDetailsDTO user);
+        Task<long> RegisterUser(UserDetailsDTO user);
     }
 }

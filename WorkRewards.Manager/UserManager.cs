@@ -30,7 +30,7 @@ namespace WorkRewards.Manager
             return Task.Run(() => _data.GetRoles(roleId));
         }
 
-        public Task<int> RegisterUser(UserDetailsDTO user)
+        public Task<long> RegisterUser(UserDetailsDTO user)
         {
             return Task.Run(() => _data.RegisterUser(user));
         }

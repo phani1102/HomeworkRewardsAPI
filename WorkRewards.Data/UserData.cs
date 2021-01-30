@@ -28,10 +28,10 @@ namespace WorkRewards.Data
             //dbUtil.ConnectionString = this.ConnectionString;
             dbUtil = new SummitDBUtils(_config, logger);
         }
-        public int RegisterUser(UserDetailsDTO user)
+        public long RegisterUser(UserDetailsDTO user)
         {
             SqlParameter[] spParams;
-            int intuserId = 0;
+            long userId = 0;
 
             try
             {
@@ -55,16 +55,16 @@ namespace WorkRewards.Data
                     {
                         if (res.Tables[0].Rows[0]["Status"].ToString().ToUpper() == "SUCCESS")
                         {
-                            intuserId = Convert.ToInt32(res.Tables[0].Rows[0]["UserId"]);
+                            userId = Convert.ToInt64(res.Tables[0].Rows[0]["UserId"]);
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                this.logger.LogError("LoadEditBudget" + " " + ex.Message.ToString());
+                this.logger.LogError("RegisterUser" + " " + ex.Message.ToString());
             }
-            return intuserId;
+            return userId;
         }
 
         public List<RoleDTO> GetRoles(int? roleId)
@@ -97,7 +97,7 @@ namespace WorkRewards.Data
             }
             catch (Exception ex)
             {
-                this.logger.LogError("LoadEditBudget" + " " + ex.Message.ToString());
+                this.logger.LogError("GetRoles" + " " + ex.Message.ToString());
             }
             return roles;
         }
@@ -139,7 +139,7 @@ namespace WorkRewards.Data
             }
             catch (Exception ex)
             {
-                this.logger.LogError("LoadEditBudget" + " " + ex.Message.ToString());
+                this.logger.LogError("ValidateUser" + " " + ex.Message.ToString());
             }
             return userdetails;
         }
@@ -172,7 +172,7 @@ namespace WorkRewards.Data
             }
             catch (Exception ex)
             {
-                this.logger.LogError("LoadEditBudget" + " " + ex.Message.ToString());
+                this.logger.LogError("ChangePassword" + " " + ex.Message.ToString());
             }
             return isSuccess;
         }

@@ -10,6 +10,6 @@ namespace WorkRewards.Data.Interface
         bool ChangePassword(int userId, string oldPassword, string newPassword);
         UserDetailsDTO ValidateUser(UserDetailsDTO user);
         List<RoleDTO> GetRoles(int? roleId);
-        int RegisterUser(UserDetailsDTO user);
+        long RegisterUser(UserDetailsDTO user);
     }
 }
