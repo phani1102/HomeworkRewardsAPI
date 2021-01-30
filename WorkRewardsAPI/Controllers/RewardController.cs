@@ -39,5 +39,21 @@ namespace WorkRewardsAPI.Controllers
             }
             return null;
         }
+
+        [HttpPost]
+        [Route("UpdateRewardRedemptionDate")]
+        public async Task<ActionResult> UpdateRewardRedemptionDate(long userId, long taskId)
+        {
+            try
+            {
+                var result = await _rewardManager.UpdateRewardRedemptionDate(userId, taskId);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                this.logger.LogError(ex.InnerException.ToString());
+            }
+            return null;
+        }
     }
 }

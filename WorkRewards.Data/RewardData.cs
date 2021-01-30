@@ -66,5 +66,36 @@ namespace WorkRewards.Data
             }
             return lstRewardDetails;
         }
+
+        public bool UpdateRewardRedemptionDate(long userId, long taskId)
+        {
+            SqlParameter[] spParams;
+            bool isSuccess = false;
+
+            try
+            {
+                dbUtil.ConnectionString = this.ConnectionString;
+                spParams = new SqlParameter[] {
+                    new SqlParameter("@UserId", userId),
+                    new SqlParameter("@Task_Id", taskId),
+                };
+                var res = dbUtil.ExecuteSQLQuery("Task_Reward_Redemption_Date_Update", spParams);
+                if (res.Tables.Count > 0)
+                {
+                    if (res.Tables[0].Rows.Count > 0)
+                    {
+                        if (res.Tables[0].Rows[0]["Status"].ToString().ToUpper() == "SUCCESS")
+                        {
+                            isSuccess = true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.logger.LogError("UpdateRewardRedemptionDate" + " " + ex.Message.ToString());
+            }
+            return isSuccess;
+        }
     }
 }

@@ -8,5 +8,7 @@ namespace WorkRewards.Data.Interface
     public interface IRewardData
     {
         List<RewardsDTO> GetRewardsByUser(long userId);
+
+        bool UpdateRewardRedemptionDate(long userId, long taskId);
     }
 }

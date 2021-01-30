@@ -22,5 +22,10 @@ namespace WorkRewards.Manager
         {
             return Task.Run(() => _data.GetRewardsByUser(userId));
         }
+
+        public Task<bool> UpdateRewardRedemptionDate(long userId, long taskId)
+        {
+            return Task.Run(() => _data.UpdateRewardRedemptionDate(userId, taskId));
+        }
     }
 }

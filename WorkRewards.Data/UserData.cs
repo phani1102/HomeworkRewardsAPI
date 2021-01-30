@@ -38,8 +38,8 @@ namespace WorkRewards.Data
                 dbUtil.ConnectionString = this.ConnectionString;
                 spParams = new SqlParameter[] {
                     new SqlParameter("@First_Name", user.First_Name),
-                    new SqlParameter("@Last_Name ", user.Last_Name),
-                    new SqlParameter("@Middle_Name ", user.Middle_Name),
+                    new SqlParameter("@Last_Name", user.Last_Name),
+                    new SqlParameter("@Middle_Name", user.Middle_Name),
                     new SqlParameter("@Username", user.UserName),
                     new SqlParameter("@Password", user.Password),
                     new SqlParameter("@Email", user.Email),
@@ -76,7 +76,7 @@ namespace WorkRewards.Data
             {
                 dbUtil.ConnectionString = this.ConnectionString;
                 spParams = new SqlParameter[] {
-                    new SqlParameter("@RoleId ",roleId),
+                    new SqlParameter("@RoleId",roleId),
 
 
                 };
@@ -111,8 +111,8 @@ namespace WorkRewards.Data
             {
                 dbUtil.ConnectionString = this.ConnectionString;
                 spParams = new SqlParameter[] {
-                    new SqlParameter("@Username ",user.UserName),
-                    new SqlParameter("@Password ",user.Password),
+                    new SqlParameter("@Username",user.UserName),
+                    new SqlParameter("@Password",user.Password),
                 };
                 var res = dbUtil.ExecuteSQLQuery("Validate_User", spParams);
                 if (res.Tables.Count > 0)
@@ -153,12 +153,12 @@ namespace WorkRewards.Data
             {
                 dbUtil.ConnectionString = this.ConnectionString;
                 spParams = new SqlParameter[] {
-                    new SqlParameter("@UserId ", userId),
-                    new SqlParameter("@OldPassword  ", oldPassword),
-                    new SqlParameter("@NewPassword  ", newPassword),
+                    new SqlParameter("@UserId", userId),
+                    new SqlParameter("@OldPassword", oldPassword),
+                    new SqlParameter("@NewPassword", newPassword),
 
                 };
-                var res = dbUtil.ExecuteSQLQuery("User_Details_Insert", spParams);
+                var res = dbUtil.ExecuteSQLQuery("User_Password_Update", spParams);
                 if (res.Tables.Count > 0)
                 {
                     if (res.Tables[0].Rows.Count > 0)
