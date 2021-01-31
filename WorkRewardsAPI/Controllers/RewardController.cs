@@ -10,8 +10,8 @@ using WorkRewards.Manager.Interface;
 
 namespace WorkRewardsAPI.Controllers
 {
-    [Authorize]
-    [Route("api/[controller]")]
+    //[Authorize]
+    [Route("v1")]
     [ApiController]
     public class RewardController : ControllerBase
     {

@@ -51,7 +51,7 @@ namespace WorkRewardsAPI.Controllers
             return null;
         }
         [HttpPost]
-        [Route("UpdateTaskDetails")]
+        [Route("UpdateTask")]
         public async Task<ActionResult> UpdateTaskDetails(TaskDTO req)
         {
             try

@@ -24,8 +24,8 @@ namespace WorkRewards.DTO
 
     public class RewardDetailsDTO
     {
-       public List<RewardsDTO> Reqards { get; set; }
-        public List<RewardsImageDTO> ReqardImages { get; set; }
+       public List<RewardsDTO> Rewards { get; set; }
+        public List<RewardsImageDTO> RewardImages { get; set; }
 
     }
 }

@@ -139,8 +139,8 @@ namespace WorkRewards.Data
                                         Image = objdata.Field<string>("Image"),
                                         RewardId = objdata.Field<int>("Reward_Id"),
                                     };
-                        taskStatus.Reqards = query.ToList();
-                        taskStatus.ReqardImages = query1.ToList();
+                        taskStatus.Rewards = query.ToList();
+                        taskStatus.RewardImages = query1.ToList();
                     }
                 }
             }

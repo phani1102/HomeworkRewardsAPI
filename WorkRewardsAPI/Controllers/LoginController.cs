@@ -14,7 +14,7 @@ using WorkRewards.DTO;
 
 namespace WorkRewardsAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("v1")]
     [ApiController]
     public class LoginController : ControllerBase
     {
