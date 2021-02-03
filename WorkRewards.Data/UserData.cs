@@ -46,6 +46,8 @@ namespace WorkRewards.Data
                     new SqlParameter("@Mobile_No", user.MobileNumber),
                     new SqlParameter("@Role_Id", user.RoleId),
                     new SqlParameter("@Relationship_Id", user.RelationShipId),
+                    new SqlParameter("@DOB", user.DOB),
+                    new SqlParameter("@Gender", user.Gender)
 
                 };
                 var res = dbUtil.ExecuteSQLQuery("User_Details_Insert", spParams);
@@ -130,6 +132,8 @@ namespace WorkRewards.Data
                                         MobileNumber = objdata.Field<string>("Mobile_No"),
                                         RoleId = objdata.Field<int>("Role_Id"),
                                         RoleName = objdata.Field<string>("Role_Name"),
+                                        DOB = objdata.Field<DateTime>("DOB"),
+                                        Gender = objdata.Field<string>("Gender")
                                     };
                         userdetails = query.FirstOrDefault();
                     }
