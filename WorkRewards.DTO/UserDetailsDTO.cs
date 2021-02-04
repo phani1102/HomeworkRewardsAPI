@@ -21,7 +21,8 @@ namespace WorkRewards.DTO
         public int? RoleId { get; set; }
         public string RoleName { get; set; }
         public string RelationshipType { get; set; }
-
+        public DateTime DOB { get; set; }
+        public string Gender { get; set; }
         public long? RelationShipId { get; set; }
     }
 }

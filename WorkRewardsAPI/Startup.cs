@@ -32,7 +32,13 @@ namespace WorkRewardsAPI
             services.AddControllers();
             //   services.AddTokenAuthentication(Configuration);
 
-            services.AddCors();
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(policy =>
+                {
+                    policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+                });
+            });
             services.AddTransient<IUserManager, UserManager>();
             services.AddTransient<IUserData, UserData>();
             services.AddTransient<IDropdownManager, DropdownManager>();
@@ -64,11 +70,7 @@ namespace WorkRewardsAPI
             app.UseRouting();
             // app.UseAuthentication();
             // app.UseAuthorization();
-            app.UseCors(x => x
-                 .AllowAnyMethod()
-                 .AllowAnyHeader()
-                 .SetIsOriginAllowed(origin => true) // allow any origin
-                 .AllowCredentials());
+            app.UseCors();
             app.UseSwagger();
             app.UseSwaggerUI(options => options.SwaggerEndpoint("/swagger/v1/swagger.json", "Work Rewards Services"));
             app.UseEndpoints(endpoints =>
