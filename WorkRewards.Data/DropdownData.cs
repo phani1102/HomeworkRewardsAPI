@@ -64,9 +64,7 @@ namespace WorkRewards.Data
                                         MobileNumber = objdata.Field<string>("Mobile_No"),
                                         RoleId = objdata.Field<int>("Role_Id"),
                                         RoleName = objdata.Field<string>("Role_Name"),
-                                        RelationshipType = objdata.Field<string>("Relationship_Type"),
-                                        DOB = objdata.Field<DateTime>("DOB"),
-                                        Gender = objdata.Field<string>("Gender")
+                                        RelationshipType = objdata.Field<string>("Relationship_Type")
                                     };
                         userDetails = query.ToList();
                     }

@@ -137,9 +137,7 @@ namespace WorkRewards.Data
                                         GenderName = objdata.Field<string>("Gender").GetGender(),
                                         MobileNumber = objdata.Field<string>("Mobile_No"),
                                         RoleId = objdata.Field<int>("Role_Id"),
-                                        RoleName = objdata.Field<string>("Role_Name"),
-                                        DOB = objdata.Field<DateTime>("DOB"),
-                                        Gender = objdata.Field<string>("Gender")
+                                        RoleName = objdata.Field<string>("Role_Name")
                                     };
                         userdetails = query.FirstOrDefault();
                     }
