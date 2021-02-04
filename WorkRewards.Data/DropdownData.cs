@@ -51,12 +51,16 @@ namespace WorkRewards.Data
                         var query = from objdata in res.Tables[0].AsEnumerable()
                                     select new UserDetailsDTO()
                                     {
-                                        UserId = objdata.Field<int>("User_Id"),
+                                        UserId = objdata.Field<long>("User_Id"),
+                                        FullName = objdata.Field<string>("First_Name") + " " + objdata.Field<string>("Last_Name"),
                                         First_Name = objdata.Field<string>("First_Name"),
                                         Last_Name = objdata.Field<string>("Last_Name"),
                                         Middle_Name = objdata.Field<string>("Middle_Name"),
                                         UserName = objdata.Field<string>("Username"),
                                         Email = objdata.Field<string>("Email"),
+                                        DOB = objdata.Field<DateTime>("DOB"),
+                                        Gender = objdata.Field<string>("Gender"),
+                                        GenderName = objdata.Field<string>("Gender").GetGender(),
                                         MobileNumber = objdata.Field<string>("Mobile_No"),
                                         RoleId = objdata.Field<int>("Role_Id"),
                                         RoleName = objdata.Field<string>("Role_Name"),

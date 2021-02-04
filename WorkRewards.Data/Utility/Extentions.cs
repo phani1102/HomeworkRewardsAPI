@@ -150,6 +150,25 @@ namespace WorkRewards.Data.Utility
             return new List<PropertyInfo>();
         }
 
+        public static string GetGender(this string genderCode)
+        {
+            string gName = "";
+            switch (genderCode)
+            {
+                case "M":
+                    gName= "Male";
+                    break;
+                case "F":
+                    gName= "Female";
+                    break;
+                case "O":
+                    gName ="Other";
+                    break;
+            }
+
+            return gName;
+        }
+
     }
 }
 

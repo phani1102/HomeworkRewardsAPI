@@ -64,6 +64,11 @@ namespace WorkRewardsAPI
             app.UseRouting();
             // app.UseAuthentication();
             // app.UseAuthorization();
+            app.UseCors(x => x
+                 .AllowAnyMethod()
+                 .AllowAnyHeader()
+                 .SetIsOriginAllowed(origin => true) // allow any origin
+                 .AllowCredentials());
             app.UseSwagger();
             app.UseSwaggerUI(options => options.SwaggerEndpoint("/swagger/v1/swagger.json", "Work Rewards Services"));
             app.UseEndpoints(endpoints =>

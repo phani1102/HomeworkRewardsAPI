@@ -72,7 +72,7 @@ namespace WorkRewardsAPI.Controllers
         /// <param name="requestObj"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("ValidateUser")]
+        
         public async Task<ActionResult> ValidateUser([FromBody]UserDetailsDTO requestObj)
         {
             try

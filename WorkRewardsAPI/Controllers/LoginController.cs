@@ -28,6 +28,7 @@ namespace WorkRewardsAPI.Controllers
         }
 
         [HttpPost]
+        [Route("ValidateUser")]
         public async Task<IActionResult> Validate([FromBody] UserDetailsDTO requestObj)
         {
             if (requestObj!=null)
@@ -43,7 +44,7 @@ namespace WorkRewardsAPI.Controllers
                     new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
                     new Claim("Id", user.UserId.ToString()),
                     new Claim("UserName", user.UserName),
-                    new Claim("Email", user.Email)
+                    new Claim("Mobile", user.MobileNumber)
                    };
 
                     var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
@@ -52,7 +53,7 @@ namespace WorkRewardsAPI.Controllers
 
                     var token = new JwtSecurityToken(_configuration["Jwt:Issuer"], _configuration["Jwt:Audience"], claims, expires: DateTime.UtcNow.AddDays(1), signingCredentials: signIn);
 
-                    return Ok(new JwtSecurityTokenHandler().WriteToken(token));
+                    return Ok(new {details= user, token = new JwtSecurityTokenHandler().WriteToken(token)});
             }
             else
             {
