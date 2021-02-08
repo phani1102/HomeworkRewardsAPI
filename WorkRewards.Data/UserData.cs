@@ -48,8 +48,6 @@ namespace WorkRewards.Data
                     new SqlParameter("@Mobile_No", user.MobileNumber),
                     new SqlParameter("@Role_Id", user.RoleId),
                     new SqlParameter("@Relationship_Id", user.RelationShipId),
-                    new SqlParameter("@DOB", user.DOB),
-                    new SqlParameter("@Gender", user.Gender)
                 };
                 var res = dbUtil.ExecuteSQLQuery("User_Details_Insert", spParams);
                 if (res.Tables.Count > 0)
