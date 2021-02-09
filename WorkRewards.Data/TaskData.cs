@@ -49,21 +49,22 @@ namespace WorkRewards.Data
                         var query = from objdata in res.Tables[0].AsEnumerable()
                                     select new TaskDTO()
                                     {
-                                        Task_Id = objdata.Field<int>("Task_Id"),
+                                        Task_Id = objdata.Field<long>("Task_Id"),
                                         Task_Name = objdata.Field<string>("Task_Name"),
                                         Task_Status_Name = objdata.Field<string>("Task_Status_Name"),
-                                        Assigned_To = objdata.Field<int>("Role_Name"),
+                                        Assigned_To = objdata.Field<long>("Assigned_To"),
                                         Assigned_To_Name = objdata.Field<string>("Assigned_To_Name"),
                                         End_Date = MakeSafeDate(objdata.Field<DateTime?>("End_Date")),
                                         Is_Active = objdata.Field<bool>("Is_Active"),
                                         Is_Approved = objdata.Field<bool>("Is_Approved"),
-                                        Reward_Id = objdata.Field<int>("Reward_Id"),
+                                        Reward_Id = objdata.Field<long?>("Reward_Id"),
                                         Reward_Name = objdata.Field<string>("Reward_Name"),
                                         Reward_Redemption_Date = MakeSafeDate(objdata.Field<DateTime?>("Reward_Redemption_Date")),
                                         Start_Date = MakeSafeDate(objdata.Field<DateTime?>("Start_Date")),
                                         Task_Completed_Date = MakeSafeDate(objdata.Field<DateTime?>("Task_Completed_Date")),
                                         Task_Description = objdata.Field<string>("Task_Description"),
                                         Task_Status_Id = objdata.Field<int>("Task_Status_Id"),
+                                        UserId = objdata.Field<long>("Created_By")
                                     };
                         taskList = query.ToList();
                     }
