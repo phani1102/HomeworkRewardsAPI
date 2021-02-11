@@ -39,5 +39,10 @@ namespace WorkRewards.Manager
         {
             return Task.Run(() => _data.ValidateUser(user));
         }
+
+        public Task<bool> UpdateProfile(UserDetailsDTO user)
+        {
+            return Task.Run(()=> _data.UpdateProfile(user));
+        }
     }
 }

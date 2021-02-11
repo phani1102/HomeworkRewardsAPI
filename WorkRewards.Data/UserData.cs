@@ -182,5 +182,43 @@ namespace WorkRewards.Data
             }
             return isSuccess;
         }
+
+        public bool UpdateProfile(UserDetailsDTO user)
+        {
+            SqlParameter[] spParams;
+            long userId = 0;
+
+            try
+            {
+                dbUtil.ConnectionString = this.ConnectionString;
+                spParams = new SqlParameter[] {
+                   new SqlParameter("@UserId", user.UserId), 
+                    new SqlParameter("@First_Name", user.First_Name),
+                    new SqlParameter("@Last_Name", user.Last_Name),
+                    new SqlParameter("@Middle_Name", user.Middle_Name),
+                    new SqlParameter("@Email", user.Email),
+                    new SqlParameter("@DOB", user.DOB),
+                    new SqlParameter("@Gender", user.Gender),
+                    new SqlParameter("@Mobile_No", user.MobileNumber),
+                    new SqlParameter("@Updated_By", user.UserId),
+                };
+                var res = dbUtil.ExecuteSQLQuery("User_Details_Update", spParams);
+                if (res.Tables.Count > 0)
+                {
+                    if (res.Tables[0].Rows.Count > 0)
+                    {
+                        if (res.Tables[0].Rows[0]["Status"].ToString().ToUpper() == "SUCCESS")
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.logger.LogError("RegisterUser" + " " + ex.Message.ToString());
+            }
+            return false;
+        }
     }
 }

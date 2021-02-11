@@ -66,6 +66,8 @@ namespace WorkRewardsAPI.Controllers
             return null;
         }
 
+
+
         /// <summary>
         /// ValidateUser
         /// </summary>
@@ -99,6 +101,22 @@ namespace WorkRewardsAPI.Controllers
             try
             {
                 var result = await _user.ChangePassword(userId,oldPwd,newPwd);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                this.logger.LogError(ex.InnerException.ToString());
+            }
+            return null;
+        }
+
+        [HttpPost]
+        [Route("UpdateProfile")]
+        public async Task<ActionResult> UpdateProfile([FromBody] UserDetailsDTO requestObj)
+        {
+            try
+            {
+                var result = await _user.UpdateProfile(requestObj);
                 return Ok(result);
             }
             catch (Exception ex)

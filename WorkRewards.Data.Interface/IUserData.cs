@@ -11,5 +11,6 @@ namespace WorkRewards.Data.Interface
         UserDetailsDTO ValidateUser(UserDetailsDTO user);
         List<RoleDTO> GetRoles(int? roleId);
         long RegisterUser(UserDetailsDTO user);
+        bool UpdateProfile(UserDetailsDTO user);
     }
 }
