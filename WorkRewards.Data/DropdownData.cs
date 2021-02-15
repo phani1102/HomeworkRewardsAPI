@@ -132,7 +132,7 @@ namespace WorkRewards.Data
                         var query = from objdata in res.Tables[0].AsEnumerable()
                                     select new RewardsDTO()
                                     {
-                                        RewardId = objdata.Field<int>("Reward_Id"),
+                                        RewardId = objdata.Field<long>("Reward_Id"),
                                         RewardName = objdata.Field<string>("Reward_Name"),
                                         Description = objdata.Field<string>("Description"),
                                         RewardImage= objdata.Field<string>("Reward_Image"),
