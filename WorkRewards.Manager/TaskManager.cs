@@ -29,6 +29,11 @@ namespace WorkRewards.Manager
             return Task.Run(() => _data.AssignedTaskDetailsByUserAndStatusGet(task));
         }
 
+        public Task<List<TaskDTO>> TasksPendingForApprovalByUser(long userId)
+        {
+            return Task.Run(() => _data.TasksPendingForApprovalByUser(userId));
+        }
+
         public Task<bool> CreateTask(TaskDTO task)
         {
             return Task.Run(() => _data.CreateTask(task));

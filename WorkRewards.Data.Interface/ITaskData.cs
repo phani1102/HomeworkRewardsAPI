@@ -8,6 +8,7 @@ namespace WorkRewards.Data.Interface
     public interface ITaskData
     {
         List<TaskDTO> AssignedTaskDetailsByUserAndStatusGet(TaskRequestDTO task);
+        List<TaskDTO> TasksPendingForApprovalByUser(long userId);
         bool UpdateTask(TaskRequestDTO task);
         bool CreateTask(TaskDTO task);
         bool UpdateTaskDetails(TaskDTO task);

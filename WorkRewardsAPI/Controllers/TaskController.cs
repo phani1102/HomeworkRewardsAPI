@@ -35,6 +35,22 @@ namespace WorkRewardsAPI.Controllers
             }
             return null;
         }
+
+        [HttpPost]
+        [Route("TasksPendingForApprovalByUser")]
+        public async Task<ActionResult> TasksPendingForApprovalByUser(long userId)
+        {
+            try
+            {
+                var result = await _taskManager.TasksPendingForApprovalByUser(userId);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                this.logger.LogError(ex.InnerException.ToString());
+            }
+            return null;
+        }
         [HttpPost]
         [Route("CreateTask")]
         public async Task<ActionResult> CreateTask(TaskDTO req)

@@ -9,6 +9,7 @@ namespace WorkRewards.Manager.Interface
     public interface ITaskManager
     {
         Task<List<TaskDTO>> AssignedTaskDetailsByUserAndStatusGet(TaskRequestDTO task);
+        Task<List<TaskDTO>> TasksPendingForApprovalByUser(long userId);
         Task<bool> UpdateTask(TaskRequestDTO task);
         Task<bool> CreateTask(TaskDTO task);
         Task<bool> UpdateTaskDetails(TaskDTO task);
