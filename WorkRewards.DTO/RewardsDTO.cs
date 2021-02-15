@@ -17,9 +17,9 @@ namespace WorkRewards.DTO
 
     public class RewardsImageDTO
     {
-        public int RewardImageId { get; set; }
+        public long RewardImageId { get; set; }
         public string Image { get; set; }
-        public int RewardId { get; set; }
+        public long RewardId { get; set; }
 
     }
 

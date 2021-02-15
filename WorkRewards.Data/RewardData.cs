@@ -77,7 +77,7 @@ namespace WorkRewards.Data
             {
                 dbUtil.ConnectionString = this.ConnectionString;
                 spParams = new SqlParameter[] {
-                    new SqlParameter("@UserId", userId),
+                    new SqlParameter("@User_Id", userId),
                     new SqlParameter("@Task_Id", taskId),
                 };
                 var res = dbUtil.ExecuteSQLQuery("Task_Reward_Redemption_Date_Update", spParams);
