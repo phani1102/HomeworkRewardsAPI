@@ -11,6 +11,7 @@ namespace WorkRewards.DTO
         public string Description { get; set; }
         public long? TaskId { get; set; }
         public string RewardStatus { get; set; }
+        public string RewardImage { get; set; }
      
     }
 

@@ -22,6 +22,7 @@ namespace WorkRewards.DTO
         public DateTime? Reward_Redemption_Date { get; set; }
         public bool Is_Active { get; set; }
         public long UserId { get; set; }
+        public string Reward_Image { get; set; }
     }
 
     public class TaskRequestDTO

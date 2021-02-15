@@ -59,6 +59,7 @@ namespace WorkRewards.Data
                                         Is_Approved = objdata.Field<bool>("Is_Approved"),
                                         Reward_Id = objdata.Field<long?>("Reward_Id"),
                                         Reward_Name = objdata.Field<string>("Reward_Name"),
+                                        Reward_Image = objdata.Field<string>("Reward_Image"),
                                         Reward_Redemption_Date = MakeSafeDate(objdata.Field<DateTime?>("Reward_Redemption_Date")),
                                         Start_Date = MakeSafeDate(objdata.Field<DateTime?>("Start_Date")),
                                         Task_Completed_Date = MakeSafeDate(objdata.Field<DateTime?>("Task_Completed_Date")),

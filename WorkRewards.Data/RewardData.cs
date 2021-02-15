@@ -54,7 +54,8 @@ namespace WorkRewards.Data
                                         RewardId= objdata.Field<long>("Reward_Id"),
                                         RewardName = objdata.Field<string>("Reward_Name"),
                                         Description= objdata.Field<string>("Description"),
-                                        RewardStatus= objdata.Field<string>("Reward_Status")
+                                        RewardStatus= objdata.Field<string>("Reward_Status"),
+                                        RewardImage = objdata.Field<string>("Reward_Image")
                                     };
                         lstRewardDetails = query.ToList();
                     }
