@@ -23,6 +23,7 @@ namespace WorkRewards.DTO
         public bool Is_Active { get; set; }
         public long UserId { get; set; }
         public string Reward_Image { get; set; }
+        public string Reward_Description { get; set; }
     }
 
     public class TaskRequestDTO
