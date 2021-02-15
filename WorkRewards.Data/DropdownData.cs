@@ -111,10 +111,10 @@ namespace WorkRewards.Data
             }
             return taskStatus;
         }
-        public RewardDetailsDTO GetRewards(int? rewardId)
+        public List<RewardsDTO> GetRewards(int? rewardId)
         {
             SqlParameter[] spParams;
-            RewardDetailsDTO taskStatus = new RewardDetailsDTO ();
+            List<RewardsDTO> lstRewards = new List<RewardsDTO>();
 
             try
             {
@@ -135,24 +135,18 @@ namespace WorkRewards.Data
                                         RewardId = objdata.Field<int>("Reward_Id"),
                                         RewardName = objdata.Field<string>("Reward_Name"),
                                         Description = objdata.Field<string>("Description"),
+                                        RewardImage= objdata.Field<string>("Reward_Image"),
                                     };
-                        var query1 = from objdata in res.Tables[0].AsEnumerable()
-                                    select new RewardsImageDTO()
-                                    {
-                                        RewardImageId = objdata.Field<int>("Reward_Image_Id"),
-                                        Image = objdata.Field<string>("Image"),
-                                        RewardId = objdata.Field<int>("Reward_Id"),
-                                    };
-                        taskStatus.Rewards = query.ToList();
-                        taskStatus.RewardImages = query1.ToList();
+
+                        lstRewards = query.ToList();
                     }
                 }
             }
             catch (Exception ex)
             {
-                this.logger.LogError("LoadEditBudget" + " " + ex.Message.ToString());
+                this.logger.LogError("GetRewards" + " " + ex.Message.ToString());
             }
-            return taskStatus;
+            return lstRewards;
         }
     }
 }

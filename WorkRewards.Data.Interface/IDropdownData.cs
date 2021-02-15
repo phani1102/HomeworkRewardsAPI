@@ -9,6 +9,6 @@ namespace WorkRewards.Data.Interface
     {
         List<UserDetailsDTO> GetStudentListByParentOrTeacher(int userId);
         List<TaskStatusDTO> GetTaskStatus(int? roleId);
-        RewardDetailsDTO GetRewards(int? rewardId);
+        List<RewardsDTO> GetRewards(int? rewardId);
     }
 }

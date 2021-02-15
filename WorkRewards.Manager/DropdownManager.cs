@@ -28,7 +28,7 @@ namespace WorkRewards.Manager
             return Task.Run(() => _data.GetTaskStatus(roleId));
         }
 
-        public Task<RewardDetailsDTO> GetRewards(int? rewardId)
+        public Task<List<RewardsDTO>> GetRewards(int? rewardId)
         {
             return Task.Run(() => _data.GetRewards(rewardId));
         }
