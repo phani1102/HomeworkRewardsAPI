@@ -36,7 +36,7 @@ namespace WorkRewardsAPI.Controllers
             return null;
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("TasksPendingForApprovalByUser")]
         public async Task<ActionResult> TasksPendingForApprovalByUser(long userId)
         {
