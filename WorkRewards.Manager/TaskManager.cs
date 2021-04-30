@@ -48,5 +48,14 @@ namespace WorkRewards.Manager
         {
             return Task.Run(() => _data.UpdateTaskDetails(task));
         }
+        public Task<bool> UndoTaskStatus(TaskDTO task)
+        {
+            return Task.Run(() => _data.UndoTaskStatus(task));
+        }
+
+        public Task<bool> DeleteTask(int userId, int taskId)
+        {
+            return Task.Run(() => _data.DeleteTask(userId, taskId));
+        }
     }
 }

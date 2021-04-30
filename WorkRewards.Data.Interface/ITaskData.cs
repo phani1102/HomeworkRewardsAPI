@@ -13,5 +13,7 @@ namespace WorkRewards.Data.Interface
         bool CreateTask(TaskDTO task);
         bool UpdateTaskDetails(TaskDTO task);
         bool ApproveTask(int userId, int taskId);
+        bool UndoTaskStatus(TaskDTO task);
+        bool DeleteTask(int userId, int taskId);
     }
 }

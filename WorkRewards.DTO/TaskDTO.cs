@@ -11,7 +11,7 @@ namespace WorkRewards.DTO
         public string Task_Description { get; set; }
         public DateTime? Start_Date { get; set; }
         public DateTime? End_Date { get; set; }
-        public long Assigned_To { get; set; }
+        public long? Assigned_To { get; set; }
         public string Assigned_To_Name { get; set; }
         public int Task_Status_Id { get; set; }
         public string Task_Status_Name { get; set; }
@@ -24,6 +24,7 @@ namespace WorkRewards.DTO
         public long UserId { get; set; }
         public string Reward_Image { get; set; }
         public string Reward_Description { get; set; }
+        public string Assigned_To_String { get; set; }
     }
 
     public class TaskRequestDTO

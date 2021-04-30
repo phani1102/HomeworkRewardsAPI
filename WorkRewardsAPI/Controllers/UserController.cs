@@ -125,5 +125,38 @@ namespace WorkRewardsAPI.Controllers
             }
             return null;
         }
+
+        [HttpPost]
+        [Route("UpdateUserStatus")]
+        public async Task<ActionResult> UpdateUserStatus([FromBody] UserDetailsDTO requestObj)
+        {
+            try
+            {
+                var result = await _user.UpdateUserStatus(requestObj);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                this.logger.LogError(ex.InnerException.ToString());
+            }
+            return null;
+        }
+
+        [HttpPost]
+        [Route("DeleteUser")]
+        public async Task<ActionResult> DeleteUser(int userId, int deletedBy)
+        {
+            try
+            {
+                var result = await _user.DeleteUser(userId, deletedBy);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                this.logger.LogError(ex.InnerException.ToString());
+            }
+            return null;
+        }
+       
     }
 }

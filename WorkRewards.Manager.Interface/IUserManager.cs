@@ -12,6 +12,9 @@ namespace WorkRewards.Manager.Interface
         Task<UserDetailsDTO> ValidateUser(UserDetailsDTO user);
         Task<List<RoleDTO>> GetRoles(int? roleId);
         Task<long> RegisterUser(UserDetailsDTO user);
-        Task<bool> UpdateProfile(UserDetailsDTO user);
+        Task<long> UpdateProfile(UserDetailsDTO user);
+
+        Task<bool> UpdateUserStatus(UserDetailsDTO user);
+         Task<bool> DeleteUser(int userId, int deletedBy);
     }
 }

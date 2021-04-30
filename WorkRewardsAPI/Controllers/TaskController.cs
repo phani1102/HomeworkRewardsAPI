@@ -112,5 +112,37 @@ namespace WorkRewardsAPI.Controllers
             }
             return null;
         }
+
+        [HttpPost]
+        [Route("UndoTaskStatus")]
+        public async Task<ActionResult> UndoTaskStatus(TaskDTO req)
+        {
+            try
+            {
+                var result = await _taskManager.UndoTaskStatus(req);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                this.logger.LogError(ex.InnerException.ToString());
+            }
+            return null;
+        }
+
+        [HttpPost]
+        [Route("DeleteTask")]
+        public async Task<ActionResult> DeleteTask(int userId, int taskId)
+        {
+            try
+            {
+                var result = await _taskManager.DeleteTask(userId, taskId);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                this.logger.LogError(ex.InnerException.ToString());
+            }
+            return null;
+        }
     }
 }

@@ -12,7 +12,7 @@ namespace WorkRewards.DTO
         public string Last_Name { get; set; }
         public string Middle_Name { get; set; }
         public string UserName { get; set; }
-        public DateTime DOB { get; set; }
+        public DateTime? DOB { get; set; }
         public string Gender { get; set; }
         public string GenderName { get; set; }
         public string Password { get; set; }
@@ -22,5 +22,7 @@ namespace WorkRewards.DTO
         public string RoleName { get; set; }
         public string RelationshipType { get; set; }
         public long? RelationShipId { get; set; }
+        public long? CreatedBy { get; set; }
+        public bool IsActive { get; set; }
     }
 }

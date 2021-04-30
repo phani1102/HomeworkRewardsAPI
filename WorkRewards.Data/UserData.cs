@@ -40,11 +40,10 @@ namespace WorkRewards.Data
                     new SqlParameter("@First_Name", user.First_Name),
                     new SqlParameter("@Last_Name", user.Last_Name),
                     new SqlParameter("@Middle_Name", user.Middle_Name),
-                    new SqlParameter("@Username", user.UserName),
+                    new SqlParameter("@Username", user.MobileNumber),
                     new SqlParameter("@Password", user.Password),
                     new SqlParameter("@Email", user.Email),
                     new SqlParameter("@DOB", user.DOB),
-                    new SqlParameter("@Gender", user.Gender),
                     new SqlParameter("@Mobile_No", user.MobileNumber),
                     new SqlParameter("@Role_Id", user.RoleId),
                     new SqlParameter("@Relationship_Id", user.RelationShipId),
@@ -58,6 +57,15 @@ namespace WorkRewards.Data
                         {
                             userId = Convert.ToInt64(res.Tables[0].Rows[0]["UserId"]);
                         }
+                        else if (res.Tables[0].Rows[0]["Status"].ToString().ToUpper() == "MOBILE NO. ALREADY IN USE")
+                        {
+                            userId = -1;
+                        }
+                        else if (res.Tables[0].Rows[0]["Status"].ToString().ToUpper() == "EMAIL ALREADY IN USE")
+                        {
+                            userId = -2;
+                        }
+                        
                     }
                 }
             }
@@ -130,12 +138,13 @@ namespace WorkRewards.Data
                                         Last_Name = objdata.Field<string>("Last_Name"),
                                         Middle_Name = objdata.Field<string>("Middle_Name"),
                                         Email = objdata.Field<string>("Email"),
-                                        DOB = objdata.Field<DateTime>("DOB"),
+                                        DOB = objdata.Field<DateTime?>("DOB"),
                                         Gender = objdata.Field<string>("Gender"),
                                         GenderName = objdata.Field<string>("Gender").GetGender(),
                                         MobileNumber = objdata.Field<string>("Mobile_No"),
                                         RoleId = objdata.Field<int>("Role_Id"),
-                                        RoleName = objdata.Field<string>("Role_Name")
+                                        RoleName = objdata.Field<string>("Role_Name"),
+                                        Password= objdata.Field<string>("Password")
                                     };
                         userdetails = query.FirstOrDefault();
                     }
@@ -183,7 +192,7 @@ namespace WorkRewards.Data
             return isSuccess;
         }
 
-        public bool UpdateProfile(UserDetailsDTO user)
+        public long UpdateProfile(UserDetailsDTO user)
         {
             SqlParameter[] spParams;
             long userId = 0;
@@ -191,17 +200,31 @@ namespace WorkRewards.Data
             try
             {
                 dbUtil.ConnectionString = this.ConnectionString;
-                spParams = new SqlParameter[] {
-                   new SqlParameter("@UserId", user.UserId), 
-                    new SqlParameter("@First_Name", user.First_Name),
-                    new SqlParameter("@Last_Name", user.Last_Name),
-                    new SqlParameter("@Middle_Name", user.Middle_Name),
-                    new SqlParameter("@Email", user.Email),
-                    new SqlParameter("@DOB", user.DOB),
-                    new SqlParameter("@Gender", user.Gender),
-                    new SqlParameter("@Mobile_No", user.MobileNumber),
-                    new SqlParameter("@Updated_By", user.UserId),
-                };
+                if (!string.IsNullOrEmpty(user.MobileNumber))
+                {
+                    spParams = new SqlParameter[] {
+                        new SqlParameter("@UserId", user.UserId),
+                        new SqlParameter("@First_Name", user.First_Name),
+                        new SqlParameter("@Last_Name", user.Last_Name),
+                        new SqlParameter("@Middle_Name", user.Middle_Name),
+                        new SqlParameter("@Email", user.Email),
+                        new SqlParameter("@DOB", user.DOB),
+                        new SqlParameter("@Updated_By", user.CreatedBy),
+                        new SqlParameter("@Mobile_No", user.MobileNumber)
+                    };
+                }
+                else
+                {
+                    spParams = new SqlParameter[] {
+                        new SqlParameter("@UserId", user.UserId),
+                        new SqlParameter("@First_Name", user.First_Name),
+                        new SqlParameter("@Last_Name", user.Last_Name),
+                        new SqlParameter("@Middle_Name", user.Middle_Name),
+                        new SqlParameter("@Email", user.Email),
+                        new SqlParameter("@DOB", user.DOB),
+                        new SqlParameter("@Updated_By", user.UserId)
+                    };
+                }
                 var res = dbUtil.ExecuteSQLQuery("User_Details_Update", spParams);
                 if (res.Tables.Count > 0)
                 {
@@ -209,16 +232,86 @@ namespace WorkRewards.Data
                     {
                         if (res.Tables[0].Rows[0]["Status"].ToString().ToUpper() == "SUCCESS")
                         {
-                            return true;
+                            return user.UserId.Value;
+                        }
+                        else if (res.Tables[0].Rows[0]["Status"].ToString().ToUpper() == "MOBILE NO. ALREADY IN USE")
+                        {
+                            return -1;
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                this.logger.LogError("RegisterUser" + " " + ex.Message.ToString());
+                this.logger.LogError("UpdateProfile" + " " + ex.Message.ToString());
             }
-            return false;
+            return userId;
+        }
+
+        public bool UpdateUserStatus(UserDetailsDTO user)
+        {
+            SqlParameter[] spParams;
+            bool isSuccess = false;
+
+            try
+            {
+                dbUtil.ConnectionString = this.ConnectionString;
+                spParams = new SqlParameter[] {
+                    new SqlParameter("@User_Id", user.UserId),
+                    new SqlParameter("@Is_Active", user.IsActive),
+                    new SqlParameter("@Updated_By", user.CreatedBy),
+
+                };
+                var res = dbUtil.ExecuteSQLQuery("User_Status_Update", spParams);
+                if (res.Tables.Count > 0)
+                {
+                    if (res.Tables[0].Rows.Count > 0)
+                    {
+                        if (res.Tables[0].Rows[0]["Status"].ToString().ToUpper() == "SUCCESS")
+                        {
+                            isSuccess = true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.logger.LogError("UpdateUserStatus" + " " + ex.Message.ToString());
+            }
+            return isSuccess;
+        }
+
+        public bool DeleteUser(int userId,int deletedBy)
+        {
+            SqlParameter[] spParams;
+            bool isSuccess = false;
+
+            try
+            {
+                dbUtil.ConnectionString = this.ConnectionString;
+                spParams = new SqlParameter[] {
+                    new SqlParameter("@User_Id", userId),
+                    new SqlParameter("@Is_Deleted", true),
+                    new SqlParameter("@Updated_By", deletedBy),
+
+                };
+                var res = dbUtil.ExecuteSQLQuery("User_Status_Update", spParams);
+                if (res.Tables.Count > 0)
+                {
+                    if (res.Tables[0].Rows.Count > 0)
+                    {
+                        if (res.Tables[0].Rows[0]["Status"].ToString().ToUpper() == "SUCCESS")
+                        {
+                            isSuccess = true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.logger.LogError("DeleteUser" + " " + ex.Message.ToString());
+            }
+            return isSuccess;
         }
     }
 }

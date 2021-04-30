@@ -14,5 +14,8 @@ namespace WorkRewards.Manager.Interface
         Task<bool> CreateTask(TaskDTO task);
         Task<bool> UpdateTaskDetails(TaskDTO task);
         Task<bool> ApproveTask(int userId, int taskId);
+
+        Task<bool> UndoTaskStatus(TaskDTO task);
+        Task<bool> DeleteTask(int userId, int taskId);
     }
 }

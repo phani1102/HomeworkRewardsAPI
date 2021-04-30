@@ -11,6 +11,8 @@ namespace WorkRewards.Data.Interface
         UserDetailsDTO ValidateUser(UserDetailsDTO user);
         List<RoleDTO> GetRoles(int? roleId);
         long RegisterUser(UserDetailsDTO user);
-        bool UpdateProfile(UserDetailsDTO user);
+        long UpdateProfile(UserDetailsDTO user);
+        bool UpdateUserStatus(UserDetailsDTO user);
+        bool DeleteUser(int userId, int deletedBy);
     }
 }

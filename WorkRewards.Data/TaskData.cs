@@ -171,9 +171,9 @@ namespace WorkRewards.Data
                 spParams = new SqlParameter[] {
                     new SqlParameter("@Task_Name", task.Task_Name),
                     new SqlParameter("@Task_Description", task.Task_Description),
-                    new SqlParameter("@Start_Date", task.Start_Date),
-                    new SqlParameter("@End_Date", task.End_Date),
-                    new SqlParameter("@Assigned_To", task.Assigned_To),
+                    new SqlParameter("@Start_Date", task.Start_Date.Value.Date),
+                    new SqlParameter("@End_Date", task.End_Date.Value.Date),
+                    new SqlParameter("@Assigned_To", task.Assigned_To_String),
                     new SqlParameter("@Reward_Id", task.Reward_Id),
                     new SqlParameter("@User_Id", task.UserId)
                 };
@@ -248,6 +248,62 @@ namespace WorkRewards.Data
 
                 };
                 var res = dbUtil.ExecuteSQLQuery("Approve_Completed_Task", spParams);
+                isSaved = true;
+            }
+            catch (Exception ex)
+            {
+                isSaved = false;
+
+            }
+            return isSaved;
+        }
+        public bool UndoTaskStatus(TaskDTO task)
+        {
+            SqlParameter[] spParams;
+            bool isSaved = false;
+
+            try
+            {
+                dbUtil.ConnectionString = this.ConnectionString;
+                spParams = new SqlParameter[] {
+                     new SqlParameter("@User_Id", task.UserId),
+                    new SqlParameter("@Task_Id", task.Task_Id),
+
+                };
+                var res = dbUtil.ExecuteSQLQuery("Undo_Task_Status", spParams);
+                if (res.Tables.Count > 0)
+                {
+                    if (res.Tables[0].Rows.Count > 0)
+                    {
+                        if (res.Tables[0].Rows[0]["Status"].ToString().ToUpper() == "SUCCESS")
+                        {
+                            isSaved = true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                isSaved = false;
+
+            }
+            return isSaved;
+        }
+
+        public bool DeleteTask(int userId, int taskId)
+        {
+            SqlParameter[] spParams;
+            bool isSaved = false;
+
+            try
+            {
+                dbUtil.ConnectionString = this.ConnectionString;
+                spParams = new SqlParameter[] {
+                     new SqlParameter("@User_Id", userId),
+                    new SqlParameter("@Task_Id", taskId),
+
+                };
+                var res = dbUtil.ExecuteSQLQuery("Task_Delete", spParams);
                 isSaved = true;
             }
             catch (Exception ex)
